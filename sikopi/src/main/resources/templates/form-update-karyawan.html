@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <title>Form Update Karyawan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body style="font-family: Poppins;">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2>Update Pasien</h2>
+        <br>
+        <form th:action="@{/karyawan/update}" th:object="${karyawan}" method="POST">
+          <input type="hidden" th:field="*{id}" />
+
+          NIP* <br>
+          <input required class="form-control" type="number" name="nip" th:value="*{nip}" />
+          <br><br>
+
+          Nama*  <br>
+          <input required class="form-control"  type="text" name="nama" th:value="*{nama}" />
+          <br><br>
+
+          Jenis Kelamin* <br>
+          <select required class="form-control" name="jenisKelamin">
+            <option value="1" th:if="*{jenisKelamin == 1}" selected>Laki-laki</option>
+            <option value="1" th:unless="*{jenisKelamin == 1}">Laki-laki</option>
+            <option value="2" th:if="*{jenisKelamin == 2}" selected>Perempuan</option>
+            <option value="2" th:unless="*{jenisKelamin == 2}">Perempuan</option>
+          </select>
+          <br><br>
+
+          Tanggal Lahir* <br>
+          <input required class="form-control" type="date" name="tanggalLahir" th:value="*{tanggalLahir}" />
+          <br><br>
+
+          Alamat <br>
+          <input required class="form-control" type="text" name="alamat" th:value="*{alamat}" />
+          <br><br>
+
+          No HP* <br>
+          <input required class="form-control" type="text" name="noHp" th:value="*{noHp}" />
+          <br><br>
+
+          Spesialisasi* <br>
+          <input required class="form-control" type="text" name="spesialisasi" th:value="*{spesialisasi}" />
+          <br><br>
+
+          Status* <br>
+          <select required class="form-control" name="status">
+            <option value="1" th:if="*{status == 1}" selected>Full-time</option>
+            <option value="1" th:unless="*{status == 1}">Full-time</option>
+            <option value="2" th:if="*{status == 2}" selected>Part-time</option>
+            <option value="2" th:unless="*{status == 2}">Part-time</option>
+          </select>
+          <br>
+
+          <h8>Isian bertanda * wajib diisi</h8>
+
+          <br><br>
+          <button class="btn btn-primary" type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<br><br><br><br>
+</html>

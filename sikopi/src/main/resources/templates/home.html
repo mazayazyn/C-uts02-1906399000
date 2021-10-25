@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body style="font-family: Poppins;" >
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Daftar Karyawan</h2>
+                <br>
+                <table class = "table">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIP</th>
+                        <th>Nama</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:if="*{listKaryawan.size() != 0}">
+                        <tr th:each="karyawan, iterationStatus : ${listKaryawan}"
+                            th:style="${iterationStatus.even} ? 'font-weight: bold;'">
+                            <td th:text="${iterationStatus.count}"></td>
+<!--                            <td th:text="${karyawan.nip}"></td>-->
+                            <td>
+                                <a th:href="@{/karyawan/} + ${karyawan.nip}" th:text="${karyawan.nip}"></a>
+                            </td>
+                            <td th:text="${karyawan.nama}"></td>
+                            <td th:if="${karyawan.jenisKelamin == 1}" th:text="'Laki-laki'"></td>
+                            <td th:if="${karyawan.jenisKelamin == 2}" th:text="'Perempuan'"></td>
+                            <td th:text="${karyawan.tanggalLahir}"></td>
+                            <td th:if="${karyawan.status == 1}" th:text="'Full-time'"></td>
+                            <td th:if="${karyawan.status == 2}" th:text="'Part-time'"></td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+
+                <div th:if="*{listKaryawan.size() == 0}">
+                    <p class="text-center">Tidak ada karyawan yang terdaftar</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<br><br><br><br>
+</html>

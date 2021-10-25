@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <title>Update Karyawan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body style="font-family: Poppins;">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <form>
+                    <input type="hidden" th:field="${karyawan.nip}">
+                    <h4>Sukses!</h4>
+                    <h4 th:text="'Karyawan dengan NIP ' + ${nip} + ' berhasil diupdate'"></h4><br>
+                    <h2>Detail Karyawan </h2>
+                    <br>
+                    <p th:text="'NIP: ' + ${karyawan.nip}"></p>
+                    <p th:text="'Nama: ' + ${karyawan.nama}"></p>
+                    <p th:if="${karyawan.jenisKelamin} == 1">Jenis Kelamin: Laki-laki</p>
+                    <p th:if="${karyawan.jenisKelamin} == 2">Jenis Kelamin: Perempuan</p>
+                    <p th:text="'Tanggal Lahir: ' + ${karyawan.tanggalLahir}"></p>
+                    <p th:text="'Alamat: ' + ${karyawan.alamat}"></p>
+                    <p th:text="'No HP: ' + ${karyawan.noHp}"></p>
+                    <p th:text="'Spesialisasi: ' + ${karyawan.spesialisasi}"></p>
+                    <p th:if="${karyawan.status} == 1">Status: Full-time</p>
+                    <p th:if="${karyawan.status} == 2">Status: Part-time</p>
+                    <div>
+                        <td>
+                            <a class="btn btn-primary" th:href="@{/karyawan/update/} + ${karyawan.nip}">Update</a>
+                        </td>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<br><br><br><br>
+</html>
+
+
+
